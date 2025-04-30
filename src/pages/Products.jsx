@@ -255,9 +255,16 @@ const Products = ({ addToCart, wishlist, toggleWishlist }) => {
       }
     });
 
-    // Load recommendation data from JSON
-    fetch("/recommendations.json")
-      .then((res) => res.json())
+    // Load recommendation data from JSON with headers
+    fetch("/recommendations.json", {
+      headers: {
+        "Content-Type": "application/json",  // Adding this header to specify it's a JSON response
+      },
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch recommendations");
+        return res.json();
+      })
       .then((data) => {
         setRecommendations(data);
       })
