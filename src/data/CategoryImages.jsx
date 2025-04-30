@@ -1,0 +1,26 @@
+const categoryImages = {
+  Smartphones: '/images/categories/iphone14.jpg',
+  Tablets: '/images/categories/tablets.jpg',
+  "Wireless Earbuds": '/images/categories/wirelessearbuds.jpg',
+  Smartwatches: '/images/categories/smartwatches.jpg',
+  Laptops: '/images/categories/laptops.jpg',
+  "Gaming Consoles": '/images/categories/gamingconsoles.jpg',
+  Headphones: '/images/categories/headphones.jpg',
+  Televisions: '/images/categories/televisions.jpg',
+  "PC Components": '/images/categories/pccomponents.jpg',
+  Cameras: '/images/categories/cameras.jpg',
+  "Bluetooth Speakers": '/images/categories/bluetoothspeakers.jpg',
+  Monitors: '/images/categories/monitors.jpg',
+  "Smart Home Devices": '/images/categories/smarthomedevices.jpg',
+  "VR Headsets": '/images/categories/vrheadsets.jpg',
+  "Power Banks": '/images/categories/powerbanks.jpg',
+  "Networking Devices": '/images/categories/networkingdevices.jpg',
+  "Printers & Scanners": '/images/categories/printersandscanners.jpg',
+  Projectors: '/images/categories/projectors.jpg',
+  "External Storage": '/images/categories/externalstorage.jpg',
+  "Car Electronics": '/images/categories/carelectronics.jpg',
+  "E-Readers": "/images/categories/ereaders.jpg",
+  "Retro & Niche Gadgets": '/images/categories/retroandnichegadgets.jpg',
+};
+
+export default categoryImages;

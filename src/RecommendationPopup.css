@@ -1,0 +1,33 @@
+.popup-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  .popup {
+    background: #fff;
+    padding: 20px;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 8px;
+  }
+  .recommend-grid {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .recommend-card {
+    border: 1px solid #ddd;
+    padding: 10px;
+    width: 150px;
+    text-align: center;
+  }
+  .recommend-card img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+  }
+  

@@ -1,0 +1,26 @@
+/* Dark mode styles */
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+body.light-mode {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Dark mode toggle button styles */
+.dark-mode-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px; /* Positioned in the bottom-right corner */
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.dark-mode-toggle:focus {
+  outline: none;
+}

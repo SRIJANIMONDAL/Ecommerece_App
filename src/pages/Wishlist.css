@@ -1,0 +1,130 @@
+/* Wishlist Styles */
+.wishlist {
+  padding: 40px 20px;
+  max-width: 1000px;
+  margin: auto;
+  font-family: 'Arial', sans-serif;
+}
+
+.wishlist h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+  color: #333;
+}
+
+.wishlist-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fefefe;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.wishlist-item:hover {
+  transform: scale(1.02);
+}
+
+.wishlist-item img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 20px;
+}
+
+.wishlist-item div {
+  flex-grow: 1;
+}
+
+.wishlist-item h3 {
+  font-size: 20px;
+  color: #222;
+  margin-bottom: 5px;
+}
+
+.wishlist-item p {
+  margin: 3px 0;
+  color: #666;
+}
+
+.wishlist-item button {
+  margin-right: 10px;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.wishlist-item button:first-of-type {
+  background-color: #4caf50;
+  color: white;
+}
+
+.wishlist-item button:first-of-type:hover {
+  background-color: #388e3c;
+}
+
+.wishlist-item button:last-of-type {
+  background-color: #f44336;
+  color: white;
+}
+
+.wishlist-item button:last-of-type:hover {
+  background-color: #c62828;
+}
+
+.wishlist p {
+  text-align: center;
+  color: #777;
+  font-size: 16px;
+}
+.wishlist-page {
+  padding: 2rem;
+}
+
+.wishlist-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.wishlist-item {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  width: 250px;
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.wishlist-img {
+  width: 100px;
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+
+.wishlist-details h4 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.wishlist-buttons button {
+  margin: 0.3rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.wishlist-buttons button:last-child {
+  background-color: #dc3545;
+}

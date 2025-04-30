@@ -1,0 +1,225 @@
+/* Apply box-sizing globally */
+* {
+  box-sizing: border-box;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7); /* Dark background with 70% opacity */
+  backdrop-filter: blur(10px); /* Glassmorphic effect */
+  padding: 10px 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+  font-family: 'Arial', sans-serif;
+}
+
+/* Flex containers */
+.nav-left, .nav-center, .nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Center flex expands */
+.nav-center {
+  flex: 1;
+  justify-content: center;
+}
+
+/* Logo */
+.logo img {
+  display: block;
+  height: 120px;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  gap: 20px;
+}
+
+.nova-logo {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
+.nova-text {
+  font-size: 3rem;
+  font-weight: bold;
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin: 0;
+}
+
+.nav-links a, .cart-wishlist-icon, .notification-btn, .dark-toggle {
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.nav-links a:hover, .cart-wishlist-icon:hover, .notification-btn:hover, .dark-toggle:hover {
+  color: #007bff;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Welcome Text */
+.welcome {
+  color: #ffffff;
+  margin-left: 20px;
+  font-weight: 600;
+}
+
+/* Button */
+.button {
+  background-color: #f90;
+  border: none;
+  padding: 6px 12px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.bar {
+  height: 3px;
+  width: 25px;
+  background-color: #333;
+  margin: 3px 0;
+  transition: all 0.3s ease;
+}
+
+/* Notification */
+.notification-wrapper {
+  position: relative;
+  margin-left: 15px;
+}
+
+.notification-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  position: relative;
+}
+
+.notif-dot {
+  position: absolute;
+  top: -4px;
+  right: -6px;
+  background: red;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.notification-dropdown {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  background-color: white;
+  width: 250px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  padding: 10px;
+  z-index: 999;
+}
+
+.notification-item {
+  padding: 10px 8px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+.notification-item:last-child {
+  border-bottom: none;
+}
+
+/* Dark Mode Toggle */
+.dark-toggle {
+  background: transparent;
+  border: 1px solid white;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-weight: 600;
+}
+
+/* Icons */
+.cart-wishlist-icon {
+  font-size: 24px;
+}
+
+.power-button-icon {
+  font-size: 24px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  width: 30px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px 15px;
+  }
+
+  .nav-left, .nav-right {
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .nav-center {
+    order: -1;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hamburger {
+    display: flex;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 1001;
+  }
+}

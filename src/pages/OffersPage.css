@@ -1,0 +1,155 @@
+Offers Page Styles
+.offers-container {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    padding: 20px;
+    background: #f4f4f4;
+  }
+  
+  /* Header Section */
+  .offers-header {
+    background: #ff5722;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  
+  /* Offer Banners */
+  .offer-banner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .offer-item {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 280px;
+  }
+  
+  .offer-item h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .offer-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background: #3287e8;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  
+  .offer-btn:hover {
+    background: #df7859;
+  }
+  
+  /* Limited Time Offers */
+  .limited-offers {
+    margin-top: 30px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .limited-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .limited-card {
+    background: #5f23d9;
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    width: 250px;
+  }
+  
+  .offer-card {
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    position: relative;
+    text-align: center;
+    transition: transform 0.2s ease;
+  }
+  
+  .offer-card:hover {
+    transform: scale(1.03);
+  }
+  
+  .offer-tag {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: crimson;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+  }
+  
+  .shop-now-btn {
+    margin-top: 10px;
+    background: #ff6600;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .offers-page {
+    padding: 20px;
+    background-color: #f8f8f8;
+  }
+  
+  .offers-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .offers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .offer-card {
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    background-color: #fff;
+    transition: transform 0.3s ease;
+  }
+  
+  .offer-card:hover {
+    transform: scale(1.02);
+  }
+  
+  .offer-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .offer-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+  
