@@ -140,6 +140,13 @@ const Home = () => {
     setCurrentSlide(index);
   };
 
+  // 📧 Newsletter form handler
+  const handleNewsletterSubmit = (e) => {
+    e.preventDefault();
+    // Handle form submission (API call or toast message)
+    console.log('Newsletter subscribed!');
+  };
+
   return (
     <div className="home">
       {/* 🌟 Carousel */}
@@ -153,6 +160,16 @@ const Home = () => {
               className="carousel-image"
               style={{ opacity: imagesLoaded ? 1 : 0 }}
             />
+          ))}
+        </div>
+        <div className="carousel-dots">
+          {images.map((_, idx) => (
+            <button
+              key={idx}
+              className={`dot ${idx === currentSlide ? 'active' : ''}`}
+              onClick={() => handleDotClick(idx)}
+              aria-label={`Go to slide ${idx + 1}`}
+            ></button>
           ))}
         </div>
       </div>
@@ -176,7 +193,7 @@ const Home = () => {
             {specialOffers.map((offer, index) => (
               <Link to={`/products?category=${offer.category}`} key={index} className="offer-card">
                 <div className="offer-image">
-                  <img src={offer.image} alt={offer.title} />
+                  <img src={offer.image} alt={offer.title} loading="lazy" />
                   <div className="offer-overlay">
                     <span className="discount-badge">{offer.discount}</span>
                   </div>
@@ -214,7 +231,7 @@ const Home = () => {
       <section className="newsletter-section">
         <h2>Stay Updated with Latest Tech</h2>
         <p>Subscribe to our newsletter for exclusive deals on electronics</p>
-        <form className="newsletter-form">
+        <form className="newsletter-form" onSubmit={handleNewsletterSubmit}>
           <input type="email" placeholder="Enter your email" required />
           <button type="submit">Subscribe</button>
         </form>
