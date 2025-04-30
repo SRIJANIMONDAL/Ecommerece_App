@@ -21,9 +21,7 @@ const Products = ({ addToCart, wishlist, toggleWishlist }) => {
 
   useEffect(() => {
     const storedUserId = localStorage.getItem("loggedInUserID");
-    if (storedUserId) {
-      setUserId(storedUserId);
-    }
+    if (storedUserId) setUserId(storedUserId);
 
     Papa.parse("/curated_product_sample.csv", {
       download: true,
@@ -54,6 +52,34 @@ const Products = ({ addToCart, wishlist, toggleWishlist }) => {
       .catch((err) => console.error("Failed to load recommendations:", err));
   }, [categoryFromHome]);
 
+  const getRecommendationsByUserAndProduct = (userId, productId) => {
+    const match = recommendations.find(
+      (r) => r.UserID === userId && r.ProductID === productId
+    );
+
+    if (!match) return [];
+
+    return Object.entries(match)
+      .filter(([key]) => key.toLowerCase().startsWith("recommendation"))
+      .map(([, value]) => value)
+      .filter(Boolean);
+  };
+
+  const handleRecommendClick = (productId) => {
+    try {
+      const recIDs = getRecommendationsByUserAndProduct(userId, productId);
+
+      const recProducts = allProducts.filter((p) => recIDs.includes(p.ProductID));
+
+      setRecommendedProducts(recProducts);
+    } catch (err) {
+      console.error("Error fetching recommendations:", err);
+      setRecommendedProducts([]);
+    } finally {
+      setShowRecommendation(true);
+    }
+  };
+
   const filteredCategories = uniqueCategories.filter((cat) =>
     cat.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -61,42 +87,6 @@ const Products = ({ addToCart, wishlist, toggleWishlist }) => {
   const filteredProducts = selectedCategory
     ? allProducts.filter((p) => p.CategoryID === selectedCategory)
     : [];
-
-  const handleRecommendClick = (productId) => {
-    try {
-      const match = recommendations.find(
-        (r) => r.UserID === userId && r.ProductID === productId
-      );
-
-      if (!match) {
-        console.warn("No matching recommendation found for product and user.");
-        setRecommendedProducts([]);
-      } else {
-        const recIDs = [
-          match.Recommendation1,
-          match.Recommendation2,
-          match.Recommendation3,
-          match.Recommendation4,
-          match.Recommendation5,
-        ].filter(Boolean);
-
-        const recProducts = allProducts.filter((p) =>
-          recIDs.includes(p.ProductID)
-        );
-
-        if (recProducts.length === 0) {
-          console.warn("No recommended product IDs matched any product.");
-        }
-
-        setRecommendedProducts(recProducts);
-      }
-    } catch (err) {
-      console.error("Error handling recommendations:", err);
-      setRecommendedProducts([]);
-    } finally {
-      setShowRecommendation(true);
-    }
-  };
 
   return (
     <div>
