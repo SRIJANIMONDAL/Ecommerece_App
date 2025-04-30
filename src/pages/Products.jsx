@@ -202,7 +202,6 @@
 
 // export default Products;
 
-
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Papa from "papaparse";
@@ -255,10 +254,10 @@ const Products = ({ addToCart, wishlist, toggleWishlist }) => {
       }
     });
 
-    // Load recommendation data from JSON with headers
+    // Load recommendation data from JSON
     fetch("/recommendations.json", {
       headers: {
-        "Content-Type": "application/json",  // Adding this header to specify it's a JSON response
+        "Content-Type": "application/json",
       },
     })
       .then((res) => {
@@ -295,6 +294,7 @@ const Products = ({ addToCart, wishlist, toggleWishlist }) => {
         match.Recommendation5,
       ].filter(Boolean);
 
+      // Fetch recommended products from allProducts based on recommendation IDs
       const recProducts = allProducts.filter((p) => recIDs.includes(p.ProductID));
       setRecommendedProducts(recProducts);
     } else {
@@ -322,7 +322,7 @@ const Products = ({ addToCart, wishlist, toggleWishlist }) => {
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
-            gap: "12px"
+            gap: "12px",
           }}
         >
           {filteredCategories.map((cat) => (
@@ -334,7 +334,7 @@ const Products = ({ addToCart, wishlist, toggleWishlist }) => {
                 borderRadius: "6px",
                 cursor: "pointer",
                 textAlign: "center",
-                backgroundColor: "#f9f9f9"
+                backgroundColor: "#f9f9f9",
               }}
               onClick={() => {
                 setSelectedCategory(cat.id);
@@ -348,7 +348,7 @@ const Products = ({ addToCart, wishlist, toggleWishlist }) => {
                   width: "100%",
                   height: "140px",
                   objectFit: "cover",
-                  borderRadius: "4px"
+                  borderRadius: "4px",
                 }}
               />
               <h4 style={{ marginTop: "8px" }}>{cat.name}</h4>
@@ -376,7 +376,7 @@ const Products = ({ addToCart, wishlist, toggleWishlist }) => {
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-              gap: "16px"
+              gap: "16px",
             }}
           >
             {filteredProducts.map((product, index) => (
@@ -393,7 +393,7 @@ const Products = ({ addToCart, wishlist, toggleWishlist }) => {
                   stock: product.Stock,
                   image:
                     categoryImages[product.CategoryName] ||
-                    "/images/categories/default.jpg"
+                    "/images/categories/default.jpg",
                 }}
                 addToCart={addToCart}
                 toggleWishlist={toggleWishlist}
@@ -419,3 +419,4 @@ const Products = ({ addToCart, wishlist, toggleWishlist }) => {
 };
 
 export default Products;
+
