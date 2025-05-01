@@ -23,15 +23,16 @@ const Products = ({ addToCart, wishlist, toggleWishlist }) => {
     const storedUserId = localStorage.getItem("loggedInUserID");
     if (storedUserId) setUserId(storedUserId);
 
+    // Load products
     Papa.parse("/curated_product_sample.csv", {
       download: true,
       header: true,
       complete: (result) => {
-        const data = result.data.filter((item) => item.ProductID);
-        setAllProducts(data);
+        const products = result.data.filter((item) => item.ProductID);
+        setAllProducts(products);
 
         const categories = Array.from(
-          new Map(data.map((item) => [item.CategoryID, item.CategoryName])).entries()
+          new Map(products.map((item) => [item.CategoryID, item.CategoryName])).entries()
         ).map(([id, name]) => ({ id, name }));
 
         setUniqueCategories(categories);
@@ -43,42 +44,18 @@ const Products = ({ addToCart, wishlist, toggleWishlist }) => {
             setSelectedCategoryName(matched.name);
           }
         }
-      }
+      },
     });
 
-    fetch("/recommendations.json")
-      .then((res) => res.json())
-      .then(setRecommendations)
-      .catch((err) => console.error("Failed to load recommendations:", err));
+    // Load recommendations
+    Papa.parse("/Recommendations.csv", {
+      download: true,
+      header: true,
+      complete: (result) => {
+        setRecommendations(result.data);
+      },
+    });
   }, [categoryFromHome]);
-
-  const getRecommendationsByUserAndProduct = (userId, productId) => {
-    const match = recommendations.find(
-      (r) => r.UserID === userId && r.ProductID === productId
-    );
-
-    if (!match) return [];
-
-    return Object.entries(match)
-      .filter(([key]) => key.toLowerCase().startsWith("recommendation"))
-      .map(([, value]) => value)
-      .filter(Boolean);
-  };
-
-  const handleRecommendClick = (productId) => {
-    try {
-      const recIDs = getRecommendationsByUserAndProduct(userId, productId);
-
-      const recProducts = allProducts.filter((p) => recIDs.includes(p.ProductID));
-
-      setRecommendedProducts(recProducts);
-    } catch (err) {
-      console.error("Error fetching recommendations:", err);
-      setRecommendedProducts([]);
-    } finally {
-      setShowRecommendation(true);
-    }
-  };
 
   const filteredCategories = uniqueCategories.filter((cat) =>
     cat.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -87,6 +64,23 @@ const Products = ({ addToCart, wishlist, toggleWishlist }) => {
   const filteredProducts = selectedCategory
     ? allProducts.filter((p) => p.CategoryID === selectedCategory)
     : [];
+
+  const handleRecommendClick = (productId) => {
+    const match = recommendations.find(
+      (r) =>
+        String(r.ProductID).trim() === String(productId).trim() &&
+        (!userId || String(r.UserID).trim() === String(userId).trim())
+    );
+
+    let recIDs = match
+      ? [match.Recommendation1, match.Recommendation2, match.Recommendation3, match.Recommendation4, match.Recommendation5]
+          .filter(Boolean)
+      : [];
+
+    const recProducts = allProducts.filter((p) => recIDs.includes(p.ProductID));
+    setRecommendedProducts(recProducts);
+    setShowRecommendation(true);
+  };
 
   return (
     <div>
@@ -106,7 +100,7 @@ const Products = ({ addToCart, wishlist, toggleWishlist }) => {
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
-            gap: "12px"
+            gap: "12px",
           }}
         >
           {filteredCategories.map((cat) => (
@@ -118,7 +112,7 @@ const Products = ({ addToCart, wishlist, toggleWishlist }) => {
                 borderRadius: "6px",
                 cursor: "pointer",
                 textAlign: "center",
-                backgroundColor: "#f9f9f9"
+                backgroundColor: "#f9f9f9",
               }}
               onClick={() => {
                 setSelectedCategory(cat.id);
@@ -132,7 +126,7 @@ const Products = ({ addToCart, wishlist, toggleWishlist }) => {
                   width: "100%",
                   height: "140px",
                   objectFit: "cover",
-                  borderRadius: "4px"
+                  borderRadius: "4px",
                 }}
               />
               <h4 style={{ marginTop: "8px" }}>{cat.name}</h4>
@@ -160,7 +154,7 @@ const Products = ({ addToCart, wishlist, toggleWishlist }) => {
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-              gap: "16px"
+              gap: "16px",
             }}
           >
             {filteredProducts.map((product, index) => (
@@ -175,9 +169,7 @@ const Products = ({ addToCart, wishlist, toggleWishlist }) => {
                   price: Number(product.Price),
                   feature: product.UniqueFeature,
                   stock: product.Stock,
-                  image:
-                    categoryImages[product.CategoryName] ||
-                    "/images/categories/default.jpg"
+                  image: categoryImages[product.CategoryName] || "/images/categories/default.jpg",
                 }}
                 addToCart={addToCart}
                 toggleWishlist={toggleWishlist}
